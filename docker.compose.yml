@@ -1,0 +1,26 @@
+# Comando para rodar o docker:
+    # docker-compose up -d
+# Comando para parar e apaga os docker:
+    # docker-compose down
+# Comando para parar uma docker:
+    # docker-compose stop
+# Comando para listar os containers:
+    # docker ps
+# Comando para listar os containers parados:
+    # docker ps -a
+# Comando para listar as imagens:
+    # docker images
+# Comando para remover um container:
+    # docker rm <id do container>
+
+version: '3'
+
+services:
+    api-solid:
+        image: bitnami/postgresql
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRESQL_USERNAME=docker
+            - POSTGRESQL_PASSWORD=docker
+            - POSTGRESQL_DATABASE=apisolid
