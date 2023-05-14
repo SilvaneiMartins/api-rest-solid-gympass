@@ -4,7 +4,8 @@
     "description": "GymPass style App",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "vitest run",
+        "test:watch": "vitest",
         "build": "tsup src --out-dir build",
         "prod": "node build/server.js",
         "dev": "tsx watch src/server.ts"
@@ -28,7 +29,9 @@
         "prisma": "4.14.0",
         "tsup": "6.7.0",
         "tsx": "3.12.7",
-        "typescript": "5.0.4"
+        "typescript": "5.0.4",
+        "vite-tsconfig-paths": "4.2.0",
+        "vitest": "0.31.0"
     },
     "dependencies": {
         "@prisma/client": "4.14.0",
