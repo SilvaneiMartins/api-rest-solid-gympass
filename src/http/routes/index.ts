@@ -1,1 +1,1 @@
-export * from './register-routes';
+export * from './routes';
