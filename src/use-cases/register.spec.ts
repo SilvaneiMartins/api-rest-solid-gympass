@@ -36,7 +36,7 @@ describe('Register User Case', () => {
             user.password_hash
         )
 
-        await expect(isPasswordCorrectlyHashed).toBe(true);
+        expect(isPasswordCorrectlyHashed).toBe(true);
     });
 
     it('should not be able to register with same email twice', async () => {

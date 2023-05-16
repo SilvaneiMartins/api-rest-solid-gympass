@@ -6,7 +6,7 @@ GymPass style App
 
 - [x] Dese ser possível se cadastrar;
 - [x] Dese ser possível se autenticar;
-- [ ] Dese ser possível se obter o perfil de um usuário logado;
+- [x] Dese ser possível se obter o perfil de um usuário logado;
 - [ ] Dese ser possível se obter o número de check-ins pelo usuário logado;
 - [ ] Dese ser possível o usuário obter seu histórico de check-ins;
 - [ ] Dese ser possível o usuário buscar academia próximas;
