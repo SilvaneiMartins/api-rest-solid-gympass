@@ -1,9 +1,8 @@
 import { z } from "zod";
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { AuthenticateUseCase } from "@/use-cases";
-import { PrismaUsersRepository } from "@/repositories/prisma/PrismaUsersRepository";
 import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials-erro";
+import { makeAuthenticateUseCase } from "@/use-cases/factories/make-authenticate-use-case";
 
 const authenticate = async (request: FastifyRequest, reply: FastifyReply) => {
     const authenticateBodySchema = z.object({
@@ -14,9 +13,7 @@ const authenticate = async (request: FastifyRequest, reply: FastifyReply) => {
     const { email, password } = authenticateBodySchema.parse(request.body);
 
     try {
-        const usersRepository = new PrismaUsersRepository();
-        const authenticateUseCase = new AuthenticateUseCase(usersRepository);
-
+        const authenticateUseCase = makeAuthenticateUseCase();
         const response = await authenticateUseCase.execute({ email, password });
         reply.status(200).send({ message: "Usuário autenticado", user: response.user });
     } catch (e) {
