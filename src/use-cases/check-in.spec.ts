@@ -19,8 +19,8 @@ describe('Check In User Case', () => {
             title: 'Academia Sam',
             description: 'Academia Sam',
             phone: '123456789',
-            latitude: new Decimal(0),
-            longitude: new Decimal(0),
+            latitude: new Decimal(-12.748735900077671),
+            longitude: new Decimal(-60.15093259177976),
         });
 
         vi.useFakeTimers();
@@ -34,8 +34,8 @@ describe('Check In User Case', () => {
         const { checkIn } = await sut.execute({
             userId: 'any_user_id',
             gymId: 'any_gym_id',
-            userLatitude: -12.749340341723217,
-            userLongitude: -60.15101547869751,
+            userLatitude: -12.748735900077671,
+            userLongitude: -60.15093259177976,
         });
 
         expect(checkIn.id).toEqual(expect.any(String));
@@ -47,16 +47,16 @@ describe('Check In User Case', () => {
         await sut.execute({
             userId: 'any_user_id',
             gymId: 'any_gym_id',
-            userLatitude: -12.749340341723217,
-            userLongitude: -60.15101547869751,
+            userLatitude: -12.748735900077671,
+            userLongitude: -60.15093259177976,
         });
 
         await expect(() =>
             sut.execute({
                 userId: 'any_user_id',
                 gymId: 'any_gym_id',
-                userLatitude: -12.749340341723217,
-                userLongitude: -60.15101547869751,
+                userLatitude: -12.748735900077671,
+                userLongitude: -60.15093259177976,
             }),
         ).rejects.toBeInstanceOf(Error);
     });
@@ -67,8 +67,8 @@ describe('Check In User Case', () => {
         await sut.execute({
             userId: 'any_user_id',
             gymId: 'any_gym_id',
-            userLatitude: -12.749340341723217,
-            userLongitude: -60.15101547869751,
+            userLatitude: -12.748735900077671,
+            userLongitude: -60.15093259177976,
         });
 
         vi.setSystemTime(new Date(2023, 4, 18, 8, 0, 0));
@@ -76,10 +76,30 @@ describe('Check In User Case', () => {
         const { checkIn } = await sut.execute({
             userId: 'any_user_id',
             gymId: 'any_gym_id',
-            userLatitude: -12.749340341723217,
-            userLongitude: -60.15101547869751,
+            userLatitude: -12.748735900077671,
+            userLongitude: -60.15093259177976,
         })
 
         expect(checkIn.id).toEqual(expect.any(String));
+    });
+
+    it('should not be able to check in on distant gym', async () => {
+        gymsRepository.items.push({
+            id: 'any_user_id_2',
+            title: 'Academia Sam',
+            description: 'Academia Sam',
+            phone: '123456789',
+            latitude: new Decimal(-12.739347297559348),
+            longitude: new Decimal(-60.139611103413515),
+        });
+
+        await expect(() =>
+            sut.execute({
+                userId: 'any_user_id',
+                gymId: 'any_user_id_2',
+                userLatitude: -12.748735900077671,
+                userLongitude: -60.15093259177976,
+            }),
+        ).rejects.toBeInstanceOf(Error);
     });
 });
