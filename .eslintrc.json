@@ -3,8 +3,9 @@
         "@rocketseat/eslint-config/node"
     ],
     "rules": {
-        "prettier/prettier": "off",
         "camelcase": "off",
+        "no-unused-vars": "off",
+        "prettier/prettier": "off",
         "no-useless-constructor": "off"
     }
 }
