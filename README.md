@@ -1,5 +1,7 @@
 # Banckend
 
+API REST desenvolvido no curso de NODE JS da Rocketseat.
+
 GymPass style App
 
 ## RFs (Requisitos Funcionais)
