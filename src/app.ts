@@ -11,7 +11,7 @@ app.register(fastifyJwt, {
     secret: env.JWT_SECRET,
 });
 
-app.register(appRoutes, { prefix: '/api/v1/' });
+app.register(appRoutes, { prefix: env.APP_VERSAO_URL });
 
 app.setErrorHandler((error, _, reply) => {
     if (error instanceof ZodError) {
